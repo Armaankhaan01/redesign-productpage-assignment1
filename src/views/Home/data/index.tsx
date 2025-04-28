@@ -1,14 +1,14 @@
-import ArrowSvg from "@/assets/svg/ArrowSvg";
-import GlobeSvg from "@/assets/svg/GlobeSvg";
-import HandSvg from "@/assets/svg/handSvg";
-import HelplineSvg from "@/assets/svg/HelplineSvg";
-import RevenueSvg from "@/assets/svg/RevenueSvg";
-import SupportSvg from "@/assets/svg/SupportSvg";
-import { ReactNode } from "react";
+import ArrowSvg from '@/assets/svg/ArrowSvg'
+import GlobeSvg from '@/assets/svg/GlobeSvg'
+import HandSvg from '@/assets/svg/handSvg'
+import HelplineSvg from '@/assets/svg/HelplineSvg'
+import RevenueSvg from '@/assets/svg/RevenueSvg'
+import SupportSvg from '@/assets/svg/SupportSvg'
+import { ReactNode } from 'react'
 
 interface HeroData {
-    icon: ReactNode;
-    title: string;
+    icon: ReactNode
+    title: string
 }
 
 export const heroNewData: HeroData[] = [
@@ -36,4 +36,4 @@ export const heroNewData: HeroData[] = [
         icon: <GlobeSvg width={60} height={60} />,
         title: 'Online Website With AI Agent',
     },
-];
+]

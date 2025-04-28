@@ -1,13 +1,13 @@
-import smallBG from '@/assets/images/main-bg-small.png';
-import { Button } from '@/components/ui';
-import HomeNavbar from '@/components/shared/HomeNav';
-import HcfSignupPopup from '@/components/shared/Popups/HcfSignupPopup';
+import smallBG from '@/assets/images/main-bg-small.png'
+import { Button } from '@/components/ui'
+import HomeNavbar from '@/components/shared/HomeNav'
+import HcfSignupPopup from '@/components/shared/Popups/HcfSignupPopup'
 
 interface HeroSectionProps {
-    scrollToSection: (ref: React.RefObject<HTMLElement>) => void;
-    featuresRef: React.RefObject<HTMLElement>;
-    contactRef: React.RefObject<HTMLElement>;
-    aboutRef: React.RefObject<HTMLElement>;
+    scrollToSection: (ref: React.RefObject<HTMLElement>) => void
+    featuresRef: React.RefObject<HTMLElement>
+    contactRef: React.RefObject<HTMLElement>
+    aboutRef: React.RefObject<HTMLElement>
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({
@@ -16,10 +16,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({
     contactRef,
     aboutRef,
 }) => {
-
-
     return (
-        <div className="!bg-[#01052f] w-full relative flex flex-col py-2 md:py-5 overflow-hidden">
+        <div className="!bg-[#01052f] w-full relative flex flex-col py-2 md:py-5 px-4  overflow-hidden">
             <HomeNavbar
                 scrollToSection={scrollToSection}
                 featuresRef={featuresRef}
@@ -27,7 +25,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                 aboutRef={aboutRef}
             />
 
-            <div className='min-h-[90vh] flex items-center'>
+            <div className="min-h-[90vh] flex items-center">
                 {/* Background video for larger screens */}
                 {/* <video
                     autoPlay
@@ -79,11 +77,21 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                     {/* Content Section */}
                     <div className="lg:w-1/2 lg:pr-8">
                         <h1 className="text-2xl md:text-4xl font-semibold mb-4 capitalize text-white">
-                            <span className="text-primary">AI front office </span> <br />
+                            <span className="text-primary">
+                                AI front office{' '}
+                            </span>{' '}
+                            <br />
                             for healthcare agents
                         </h1>
-                        <p style={{ lineHeight: '0.7' }} className="text-lg my-8 font-light">
-                            Create <span className="text-primary font-bold">AI Store</span>  in 2 min <br />
+                        <p
+                            style={{ lineHeight: '0.7' }}
+                            className="text-lg my-8 font-light"
+                        >
+                            Create{' '}
+                            <span className="text-primary font-bold">
+                                AI Store
+                            </span>{' '}
+                            in 2 min <br />
                             <br />
                             Scale with{' '}
                             <span className="font-bold text-primary">
@@ -91,34 +99,51 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                             </span>{' '}
                         </p>
                         <div>
-                            <HcfSignupPopup popupButtonStatus buttonChildren={<Button block variant='solid' className='rounded-[5px] max-w-[200px]'>Get Started</Button>} />
+                            <HcfSignupPopup
+                                popupButtonStatus
+                                buttonChildren={
+                                    <Button
+                                        block
+                                        variant="solid"
+                                        className="rounded-[5px] max-w-[200px]"
+                                    >
+                                        Get Started
+                                    </Button>
+                                }
+                            />
                         </div>
                         <div className="text-white flex gap-12 mt-8 flex-wrap">
                             <div>
                                 <h1 className="text-3xl font-bold text-white">
-                                    2100<span className="text-primary ml-1">+</span>
+                                    2100
+                                    <span className="text-primary ml-1">+</span>
                                 </h1>
-                                <p className="text-lg capitalize">qualified doctors</p>
+                                <p className="text-lg capitalize">
+                                    qualified doctors
+                                </p>
                             </div>
                             <div>
                                 <h1 className="text-3xl font-bold text-white">
-                                    1000<span className="text-primary ml-1">+</span>
+                                    1000
+                                    <span className="text-primary ml-1">+</span>
                                 </h1>
                                 <p className="text-lg capitalize">hospitals</p>
                             </div>
                             <div>
                                 <h1 className="text-3xl font-bold text-white">
-                                    800<span className="text-primary ml-1">+</span>
+                                    800
+                                    <span className="text-primary ml-1">+</span>
                                 </h1>
-                                <p className="text-lg capitalize">Treatment Plans</p>
+                                <p className="text-lg capitalize">
+                                    Treatment Plans
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
-    );
-};
+    )
+}
 
-export default HeroSection;
+export default HeroSection

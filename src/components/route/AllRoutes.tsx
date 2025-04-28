@@ -3,7 +3,11 @@ import PublicRoute from './PublicRoute'
 import AuthorityGuard from './AuthorityGuard'
 import AppRoute from './AppRoute'
 import PageContainer from '@/components/template/PageContainer'
-import { protectedRoutes, publicRoutes } from '@/configs/routes.config'
+import {
+    protectedRoutes,
+    publicRoutes,
+    sharedRoutes,
+} from '@/configs/routes.config'
 import appConfig from '@/configs/app.config'
 import { useAuth } from '@/auth'
 import { Routes, Route, Navigate } from 'react-router-dom'
@@ -23,6 +27,21 @@ const AllRoutes = (props: AllRoutesProps) => {
 
     return (
         <Routes>
+            {sharedRoutes.map((route) => (
+                <Route
+                    key={route.path}
+                    path={route.path}
+                    element={
+                        <AppRoute
+                            routeKey={route.key}
+                            component={route.component}
+                            {...route.meta}
+                        />
+                    }
+                />
+            ))}
+
+            {/* Protected Routes */}
             <Route path="/" element={<ProtectedRoute />}>
                 <Route
                     path="/"
@@ -50,6 +69,8 @@ const AllRoutes = (props: AllRoutesProps) => {
                 ))}
                 <Route path="*" element={<Navigate replace to="/" />} />
             </Route>
+
+            {/* Public Routes */}
             <Route path="/" element={<PublicRoute />}>
                 {publicRoutes.map((route) => (
                     <Route

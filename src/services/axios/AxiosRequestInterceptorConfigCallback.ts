@@ -6,7 +6,7 @@ import {
 } from '@/constants/api.constant'
 import type { InternalAxiosRequestConfig } from 'axios'
 
-const AxiosRequestIntrceptorConfigCallback = (
+const AxiosRequestInterceptorConfigCallback = (
     config: InternalAxiosRequestConfig,
 ) => {
     const storage = appConfig.accessTokenPersistStrategy
@@ -31,4 +31,4 @@ const AxiosRequestIntrceptorConfigCallback = (
     return config
 }
 
-export default AxiosRequestIntrceptorConfigCallback
+export default AxiosRequestInterceptorConfigCallback

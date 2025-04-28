@@ -1,8 +1,8 @@
 import axios from 'axios'
-import AxiosResponseIntrceptorErrorCallback from './AxiosResponseIntrceptorErrorCallback'
-import AxiosRequestIntrceptorConfigCallback from './AxiosRequestIntrceptorConfigCallback'
 import appConfig from '@/configs/app.config'
 import type { AxiosError } from 'axios'
+import AxiosResponseInterceptorErrorCallback from './AxiosResponseInterceptorErrorCallback'
+import AxiosRequestInterceptorConfigCallback from './AxiosRequestInterceptorConfigCallback'
 
 const AxiosBase = axios.create({
     timeout: 60000,
@@ -11,7 +11,7 @@ const AxiosBase = axios.create({
 
 AxiosBase.interceptors.request.use(
     (config) => {
-        return AxiosRequestIntrceptorConfigCallback(config)
+        return AxiosRequestInterceptorConfigCallback(config)
     },
     (error) => {
         return Promise.reject(error)
@@ -21,7 +21,7 @@ AxiosBase.interceptors.request.use(
 AxiosBase.interceptors.response.use(
     (response) => response,
     (error: AxiosError) => {
-        AxiosResponseIntrceptorErrorCallback(error)
+        AxiosResponseInterceptorErrorCallback(error)
         return Promise.reject(error)
     },
 )

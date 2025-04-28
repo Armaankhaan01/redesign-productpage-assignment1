@@ -1,81 +1,118 @@
-import React, { useEffect, useRef } from 'react';
-import HeroSection from './components/HeroSection';
-import HomeFAQs from './components/HomeFAQ';
-import ContactForm from './components/ContactForm';
-import MainFooter from './components/MainFooter';
-import InfoSection from './components/InfoSection';
-import FeaturesGrid from './components/FeaturesGrid';
+import React, { useEffect, useRef, useState } from 'react'
+import HeroSection from './components/HeroSection'
+import HomeFAQs from './components/HomeFAQ'
+import ContactForm from './components/ContactForm'
+import MainFooter from './components/MainFooter'
+import InfoSection from './components/InfoSection'
+import FeaturesGrid from './components/FeaturesGrid'
+import TestimonialsCarousel from './components/TestimonialsCarousel'
+import PricingSection from './components/PricingSection'
+import IntegrationPartners from './components/IntegrationPartners'
+import CtaBanner from './components/CtaBanner'
+import HowItWorks from './components/HowItWorks'
+import TrustedBy from './components/TrustedBy'
+import AIChatbot from './components/AIChatbot'
 
-const Home: React.FC = () => {
-	const contactRef = useRef(null);
-	const aboutRef = useRef(null);
-	const FqRef = useRef(null);
-	const scrollToSection = (ref) => {
-		ref.current.scrollIntoView({ behavior: 'smooth' });
-	};
+const Home = () => {
+    const contactRef = useRef(null)
+    const aboutRef = useRef(null)
+    const featuresRef = useRef(null)
+    const pricingRef = useRef(null)
+    const [isScrolled, setIsScrolled] = useState(false)
 
-	useEffect(() => {
-		let lastScrollTop = 0; // Initialize lastScrollTop variable
+    const scrollToSection = (ref: React.RefObject<HTMLElement>) => {
+        ref.current?.scrollIntoView({ behavior: 'smooth' })
+    }
 
-		const handleScroll = () => {
-			const hcf = document.querySelector(".hcf-profile");
-			const scrollTop =
-				document.documentElement.scrollTop || document.body.scrollTop;
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollTop = window.scrollY
+            const hcf = document.querySelector('.hcf-profile')
 
-			if (scrollTop > lastScrollTop) {
-				if (hcf) {
-					hcf.classList.add("hcf-profile-fixed");
-				}
-			} else if (scrollTop < lastScrollTop) {
-				if (hcf) {
-					hcf.classList.remove("hcf-profile-fixed");
-				}
-			}
+            if (scrollTop > 50) {
+                setIsScrolled(true)
+                if (hcf) {
+                    hcf.classList.add('hcf-profile-fixed')
+                }
+            } else {
+                setIsScrolled(false)
+                if (hcf) {
+                    hcf.classList.remove('hcf-profile-fixed')
+                }
+            }
+        }
 
-			lastScrollTop = scrollTop;
-		};
+        window.addEventListener('scroll', handleScroll)
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
+    }, [])
 
+    return (
+        <div className="overflow-x-hidden">
+            {/* AI Chatbot */}
+            <AIChatbot />
 
-		// Add scroll event listener
-		window.addEventListener("scroll", handleScroll);
+            {/* Hero Section */}
+            <HeroSection
+                scrollToSection={scrollToSection}
+                featuresRef={featuresRef}
+                contactRef={contactRef}
+                aboutRef={aboutRef}
+            />
 
-		// Cleanup the event listener on unmount
-		return () => {
-			window.removeEventListener("scroll", handleScroll);
-		};
-	}, []);
-	return (
-		<>
-			<div>
-				<div className="">
-					<HeroSection
-						scrollToSection={scrollToSection}
-						featuresRef={FqRef}
-						contactRef={contactRef}
-						aboutRef={aboutRef}
-					/>
-					{/* <div className='bg-white'>
-						<ClaimLandingSection />
-					</div> */}
-					<div className='!bg-[#eff6ff] relative'>
-						<FeaturesGrid />
-					</div>
-					<div className='!bg-white relative' ref={aboutRef}>
-						<InfoSection />
-					</div>
-					<div className='relative bg-white' ref={FqRef}>
-						<HomeFAQs />
-					</div>
-					<div className='bg-white relative' ref={contactRef}>
-						<ContactForm />
-					</div>
-					{/* <div className='bg-white'>
-						<MainFooter />
-					</div> */}
-				</div>
-			</div>
-		</>
-	);
-};
+            {/* Trusted By Logos Section */}
+            <TrustedBy />
 
-export default Home;
+            {/* Features Section */}
+            <div ref={featuresRef} className="bg-white relative">
+                <FeaturesGrid />
+            </div>
+
+            {/* How It Works Section */}
+            <HowItWorks />
+
+            {/* About Section */}
+            <div ref={aboutRef} className="bg-white relative ">
+                <InfoSection />
+            </div>
+
+            {/* Testimonials Section */}
+            <div className="bg-white py-16">
+                <TestimonialsCarousel />
+            </div>
+
+            {/* Pricing Section */}
+            <div ref={pricingRef} className="bg-white py-16 ">
+                <PricingSection />
+            </div>
+
+            {/* Integration Partners */}
+            <div className="bg-white py-16">
+                <IntegrationPartners />
+            </div>
+
+            {/* FAQ Section */}
+            <div ref={featuresRef} className="bg-white relative ">
+                <HomeFAQs />
+            </div>
+
+            {/* CTA Banner */}
+            <div className="bg-white py-16">
+                <CtaBanner />
+            </div>
+
+            {/* Contact Section */}
+            <div ref={contactRef} className="bg-white relative ">
+                <ContactForm />
+            </div>
+
+            {/* Footer */}
+            <div className="bg-white border-t border-gray-200">
+                <MainFooter />
+            </div>
+        </div>
+    )
+}
+
+export default Home
